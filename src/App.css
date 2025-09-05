@@ -1,0 +1,102 @@
+/* Page layout */
+.page {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: #fafaf7;
+  color: #2a2a2a;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px 8px;
+}
+.title {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-weight: 600;
+}
+.brand { opacity: 0.9; }
+.time { opacity: 0.6; font-weight: 500; }
+.status { font-size: 12px; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.06em; }
+.status.connected { color: #3a8f5b; }
+.status.connecting { color: #8f7a3a; }
+.status.error, .status.closed { color: #b24a4a; }
+
+.center {
+  display: grid;
+  place-items: center;
+}
+.mic-container {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.mic {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(120px 120px at 50% 50%, #bcd099 0%, #a8c389 60%, #9fb87f 100%);
+  display: grid;
+  place-items: center;
+  font-size: 42px;
+  box-shadow: 0 10px 30px rgba(80,100,60,0.15), inset 0 -6px 14px rgba(0,0,0,0.08);
+  user-select: none;
+}
+.pulse {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(168, 195, 137, 0.25);
+  width: 200px;
+  height: 200px;
+  animation: pulse 2.6s ease-out infinite;
+}
+.p2 { animation-delay: 1.3s; }
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+.mic-container:not(.active) .pulse { display: none; }
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 28px;
+}
+.btn {
+  padding: 12px 22px;
+  border-radius: 12px;
+  border: 0;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.btn.mute { background: #eaf3e8; }
+.btn.mute.on { background: #dbe9d9; }
+.btn.end { background: #e85a5a; color: #fff; }
+
+.log {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  max-height: 40vh;
+  width: min(42vw, 560px);
+  overflow: auto;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.log pre {
+  margin: 0;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
